@@ -27,7 +27,7 @@ test('Crear_Empleado_Desafio', async ({ page }) => {
   await page.locator('li').filter({ hasText: 'Employee List' }).click();
   await page.getByPlaceholder('Type for hints...').first().click();
   await page.getByPlaceholder('Type for hints...').first().fill('Alejandro Simon');
-  await page.getByText('Alejandro Simon Rojas Rojas').click();
+  await page.getByText('Alejandro Simon Rojas').click();
   await page.getByRole('button', { name: 'Search' }).click();
   await page.getByRole('cell', { name: '' }).locator('i').click();
 });
