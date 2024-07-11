@@ -1,11 +1,34 @@
+// @ts-check
 const { test, expect } = require('@playwright/test');
 
-let page;
+test('has title', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
 
-// Test que automatiza la creación de un nuevo empleado
-test('Crear nuevo empleado', async ({ context }) => {
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/Playwright/);
+});
+
+test('get started link', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+
+  // Click the get started link.
+  await page.getByRole('link', { name: 'Get started' }).click();
+
+  // Expects page to have a heading with the name of Installation.
+  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+});
+
+test('pruebita', async ({ page }) => {
+
+  await page.goto('https://www.mercadolibre.com.pe'); //entramos a la pagina
+  await page.locator('input[id=\'cb1-edit\']').fill('iphone') //fill para llenar el campo que seleccionamos
+  await page.keyboard.press('Enter') //keyboard.press para decir que estamos presionando el boton enter
+});
+
+
+
+test('Crear_Empleado_Desafio', async ({ page }) => {
   // Iniciar sesión en OrangeHRM
-  page = await context.newPage();
   await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
   await page.type('#username', 'Admin');
   await page.type('#password', 'admin123');
